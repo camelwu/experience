@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>javascript</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .toast-width {
+            width: 60%;
+        }
+        .mint-msgbox-title {
+            display: none;
+        }
+        .mint-msgbox-message {
+            font-size: .14rem;
+            color: #333333 !important;
+        }
+        .mint-msgbox-btn {
+            font-size: .14rem;
+        }
+        #app {
+            width:100%;
+            height: 300px;
+            position: relative;
+        }
+        .header{
+            height: 100px;
+            width: 100%;
+            background-color: #333333;
+            
+        }
+        .lefter{
+            width: 100px;
+            padding:10px;
+            background-color: #534747;
+            position: absolute;
+            left: 0;
+            top:100px;
+            bottom: 0;
+        }
+        .container{
+            padding:10px;
+            background-color: #1f178a;
+            position: absolute;
+            top:100px;
+            bottom: 0;
+            left: 100px;
+            right: 100px;
+            right:0;
+        }
+        .righter{
+            width: 100px;
+            padding:10px;
+            background-color: #534747;
+            position: absolute;
+            top:100px;
+            bottom: 0;
+            right: 0;
+        }
+        .table {
+display: table;
+border-collapse: collapse;
+width: 100%;
+}
+.tr {
+display: table-row;/*row为行，cell为列*/
+width: 100%;
+/*height: 100px;*/
+}
+.td {
+display: table-cell;
+width: 100%;
+/*height: 100px;
+background-color:#E5E5E5;*/
+}
+.sub-table {width: 100%;height: 100%;display: table;}
+.sub-table-tr {display: table-row; height: 100%;}
+.sub-table-td {display: table-cell; height: 100%;border: 1px solid gray; text-align: center;vertical-align: middle;}
+#flexer{
+    width: 100%;
+    height: 300px;
+    background-color: #333333;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    flex-direction:column;
+}
+#flexer .toper{
+    width: 100%;
+    height: 100px;
+    flex-grow: 0;
+}
+#flexer .contain{
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction:row;
+}
+.contain .slider{
+    height: 100%;
+    width: 100px;
+    flex-grow: 0;
+}
+.contain .center{
+    height: 100%;
+    flex-grow: 1;
+    background-color: yellowgreen;
+}
+.contain .right{
+    height: 100%;
+    width: 100px;
+    flex-grow: 0;
+}
+.gird_container {
+display: grid;
+grid-template-columns: 100px auto;
+grid-template-rows: 80px auto 80px;
+grid-column-gap: 10px;
+grid-row-gap: 15px;
+grid-template-areas: 
+"header header"
+"sidebar main"
+"footer footer";
+}
+.gird_header {
+  grid-area: header;
+}
+.gird_main {
+  grid-area: main;
+}
+.gird_slider {
+  grid-area: sidebar;
+}
+.gird_foot {
+  grid-area: footer;
+}
+    </style>
+</head>
+<body>
+<div class="table" style="height: 580px;">
+    <div class="tr">
+        <div class="td">header</div>
+    </div>
+    <div class="tr">
+        <div class="td" style="height:400px;">
+    <!-- 需要注意的是，样式中并没有列合并collspan属性，所以，需要插入嵌套table才能实现 -->
+        <div class="sub-table">
+            <div class="sub-table-tr">
+            <div class="sub-table-td" style="width:120px;">slider</div>
+            <div class="sub-table-td">main</div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="tr">
+        <div class="td">footer</div>
+    </div>
+</div>
+<div id="app">
+    <div class="header">header</div>
+    <div class="lefter">slider</div>
+    <div class="container">container</div>
+    <div class="righter">container</div>
+</div>
+<div id="flexer">
+    <div class="toper">header</div>
+    <div class="contain">
+        <div class="slider">slider</div>
+        <div class="center">container</div>
+        <div class="right">container</div>
+    </div> 
+</div>
+<div class="gird_container">
+    <div class="gird_header">header</div>
+    <div class="gird_slider">left</div>
+    <div class="gird_main">main</div>
+    <div class="gird_foot">footer</div>
+</div>
+</body>
+</html>
