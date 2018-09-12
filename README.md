@@ -43,3 +43,5 @@ process.nextClick(function(){console.log('next click!')})
 缓存技术（服务器、浏览器）
 
 实现长连接
+
+通过Javascript类模块在应用中注册的时候，遍历类模块中的每个函数，然后统一的加上try-catch处理，这样前端里面的所有函数就都在异常处理的范围之内了。怎么样，是不是要比Java等静态语言cool很多？ 代码示例如下

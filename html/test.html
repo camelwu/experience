@@ -188,140 +188,56 @@ background-color:#E5E5E5;*/
 </head>
 
 <body>
-        <script defer>// alert('defer');
-        var items = Array(1000),l = items.length-1;
-        while(l>=0){
-            items[l] = parseInt(Math.random()*2000)+1;
-            l--;
-        }
-        
-        var iterations = Math.floor(items.length/8),startAt = items.length%8,i=0;
-        console.time('testfor');
-for(;i<items.length;i++){
-    process(items[i]);
-}
-console.timeEnd('testfor');
-console.time('testforb');
-var len = items.length-1;
-for(;len>=0;len--){
-    process(items[len]);
-}
-console.timeEnd('testforb');
-console.time('testwhile');
-var j = 0
-len = items.length-1;
-while(j<len){
-    process(items[len]);
-    j++
-}
-console.timeEnd('testwhile');
-        console.time('testForEach');
-do {// console.log('startAt',startAt)
-    switch(startAt){
-        case 0:process(items[i++]);
-        case 7:process(items[i++]);
-        case 6:process(items[i++]);
-        case 5:process(items[i++]);
-        case 4:process(items[i++]);
-        case 3:process(items[i++]);
-        case 2:process(items[i++]);
-        case 1:process(items[i++]);
-    }
-    startAt = 0;
-}while(--iterations);
-function process(s){
-    //console.log(s)
-}
-console.timeEnd('testForEach');
-        </script>
-        <div>我测试！</div>
-        <script>// alert('done');</script>
-        <script>window.onload = ()=>{
-            //alert('load');
-        }</script>
-    <div class="table" style="height: 580px;">
-        <div class="tr">
-            <div class="td">header</div>
-        </div>
-        <div class="tr">
-            <div class="td" style="height:400px;">
-                <!-- 需要注意的是，样式中并没有列合并collspan属性，所以，需要插入嵌套table才能实现 -->
-                <div class="sub-table">
-                    <div class="sub-table-tr">
-                        <div class="sub-table-td" style="width:120px;">slider</div>
-                        <div class="sub-table-td">main</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tr">
-            <div class="td">footer</div>
-        </div>
-    </div>
     <div id="app">
         <div class="header">header</div>
         <div class="lefter">slider</div>
         <div class="container">container</div>
         <div class="righter">container</div>
     </div>
-    <div id="flexer">
-        <div class="toper">header</div>
-        <div class="contain">
-            <div class="slider">slider</div>
-            <div class="center">container</div>
-            <div class="right">container</div>
-        </div>
-    </div>
-    <div class="gird_container">
-        <div class="gird_header">header</div>
-        <div class="gird_slider">left</div>
-        <div class="gird_main">main</div>
-        <div class="gird_foot">footer</div>
-    </div>
 </body>
-<script src="./lib/debounce.js"></script>
+<script></script>
 <script>
-    /*
-    * 3道题目，两个js，一个css
-    1.输出六进制数据对应函数
-    * 10进制 0，1，2，3，4，5，6
-    *  6进制 f,e,d,c,7,1,2,3
-    例如convert（7）==ef
-    convert(2017)==17ef
-    2.debounce防抖函数编写
-    3.一个css布局
-    */
-    window.addEventListener("scroll", debounce(() => {
-        console.log(window.scrollY)
-    }), 200, false)
-    window.addEventListener("resize", debounce(() => {
-        console.log(window.outerHeight)
-    }), 500, true)
-    function $debounce(func, wait, imde) {
-        var timer;
-        let wait = wait || 300, imde = imde || false;
-        return function () {
-            var args = arguments, ct = this;
-            if (imde) {
-                let done = !timer
-                if (done) {
-                    func.apply(ct, args)
-                    console.log('done');
-                }
-                
-                timer = setTimeout(function () {
-                    timer = null
-                }, wait)
-            } else {
-                timer = setTimeout(function () {
-                    func.apply(ct, args)
-                }, wait)
+    var arr = ['1',2,3,4,'dd',4,5,6,6,'dd',7,8,1,0]
+    // 数组下标
+    function fn00(a){
+        var l=a.length,c=[];
+        for(var i=0;i<l;i++){
+            if(a.indexOf(a[i])==i){
+                c.push(a[i]);
             }
         }
+        return c
     }
-    var ar1 = [1,2,3,4,5,6,0],ar2=[3,4,5,6,9]
-    var ar3 = ar1.concat(ar2),arr3 = Array.from(new Set(ar3))
-    console.table(ar3)
+    console.table(fn00(arr))
+    // 2个数组
+    function fn01(a){
+        var c = [],l=a.length;
+        for(var i=0;i<l;i++){
+            if(c.indexOf(a[i])==-1){
+                c.push(a[i]);
+            }
+        }
+        return c
+    }
+    console.table(fn01(arr))
+    // object中转
+    function fn02(a){
+        var c = {},b=[],l=a.length;
+        for(var i=0;i<l;i++){
+            var val = a[i],
+            type = typeof val;
+            if(!c[val]){
+                console.log('push');
+                c[val]=[type];
+                b.push(a[i]);
+            }else if(c[val].indexOf(type)) {
+                console.log('has')
+                c[val].push(type);
+                b.push(val);
+            }
+        }
+        return b;
+    }
+    console.table(fn02(arr))
 </script>
-
 </html>
