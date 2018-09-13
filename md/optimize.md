@@ -1,3 +1,4 @@
+从输入域名开始到页面展示到浏览器里，经历了加载、执行、渲染，重构的几个阶段。将分享下我自己的心得和其他人的优秀经验。
 ## 加载和执行
 浏览器是友善的客户端，对同域名并发请求是有数量限制，过去浏览器一般是2个，支持H5的一般是6个；并且服务器端是可以关闭请求。 有朋友不理解，为什么不是并发越多越好？举个例子：百万级的PV，并发数量过大会造成什么样的后果？ 由此而延伸出来的的资源加载优化就可以有两个方向
 1. 开源
@@ -29,14 +30,15 @@
 </body>
 </html>
 ```
+
 ### js执行优化
 
 1. 作用域优化，变量层级不要太深或嵌套太多，最好是本级；大家在看各大框架或库的时候，经常可以看到这种写法：
 ```
 (function(w,d){})(window,document)
-```
-目的就是如此，再比如说的缓存某个变量或对象
-```
+
+// 目的就是如此，再比如说的缓存某个变量或对象
+
 function check(){
   var d = document, t = document.getElementById('t'), l = t.children;
   for(let i=0;i<l;i++){
@@ -44,6 +46,7 @@ function check(){
   }
 }
 ```
+
 2. 循环优化
 循环是编程中最常见的结构，优化循环是性能优化过程中很重要的一部分。一个循环的基本优化步骤如下：
  
@@ -51,26 +54,31 @@ function check(){
 简化终止条件——由于每次循环过程都会计算终止条件，故必须保证它尽可能快，即避免属性查找或其它O(n)的操作。
 简化循环体——循环体是执行最多的，故要确保其被最大限度地优化。确保没有某些可以被很容易移出循环的密集计算。
 使用后测试循环——最常用的for和while循环都是前测试循环，而如do-while循环可以避免最初终止条件的计算，因些计算更快。
+```
 for(var i = 0; i < values.length; i++) {
     process(values[i]);
 }
+```
 优化1：简化终止条件
- 
+```
 for(var i = 0, len = values.length; i < len; i++) {
     process(values[i]);
 }
+```
 优化2：使用后测试循环（注意：使用后测试循环需要确保要处理的值至少有一个）
- 
+```
 var i values.length - 1;
 if(i > -1) {
     do {
         process(values[i]);
     }while(--i >= 0);
 }
+```
 3. 展开循环
  
 当循环的次数确定时，消除循环并使用多次函数调用往往更快
-当循环的次数不确定时，可以使用Duff装置来优化。Duff装置的基本概念是通过计算迭代的次数是否为8的倍数将一个循环展开为一系列语句。如下：
+当循环的次数不确定时，可以使用Duff Service来优化。Duff装置的基本概念是通过计算迭代的次数是否为8的倍数将一个循环展开为一系列语句。如下：
+```
 // Jeff Greenberg for JS implementation of Duff's Device
 // 假设：values.length > 0
 function process(v) {
@@ -95,8 +103,9 @@ do {
     }
     startAt = 0;
 }while(--iterations > 0);
+```
 如上展开循环可以提升大数据集的处理速度。接下来给出更快的Duff装置技术，将do-while循环分成2个单独的循环。（注：这种方法几乎比原始的Duff装置实现快上40%。）
- 
+```
 // Speed Up Your Site(New Riders, 2003)
 function process(v) {
     alert(v);
@@ -123,17 +132,19 @@ do {
     process(values[i++]);
     process(values[i++]);
 }while(--iterations > 0);
+```
 针对大数据集使用展开循环可以节省很多时间，但对于小数据集，额外的开销则可能得不偿失。
 
 4. 避免双重解释
  
 当JS代码想解析JS代码时就会存在双重解释惩罚，当使用eval()函数或是Function构造函数以及使用setTimeout()传一个字符串时都会发生这种情况。如下
- 
+```
 eval("alert('hello world');"); // 避免
 var sayHi = new Function("alert('hello world');"); // 避免
 setTimeout("alert('hello world');", 100);// 避免
+```
 以上代码是包含在字符串中的，即在JS代码运行的同时必须新启运一个解析器来解析新的代码。实例化一个新的解析器有不容忽视的开销，故这种代码要比直接解析要慢。以下这几个例子，除了极少情况下eval是必须的，应尽量避免使用上述。对于Function构造函数，直接写成一般的函数即可。对于setTimeout可以传入函数作为第一个参数。如下：
- 
+```
 alert('hello world');
 var sayHi = function() {
     alert('hello world');
@@ -141,6 +152,7 @@ var sayHi = function() {
 setTimeout(function() {
     alert('hello world');
 }, 100);
+```
 总之，若要提高代码性能，尽可能避免出现需要按照JS解释的代码。
  
 5. 性能的其它注意事项
@@ -152,7 +164,7 @@ switch语句较快——若有一系列复杂的if-else语句，可以转换成�
 JS代码中的语句数量也会影响所执行的操作的速度，完成多个操作的单个语句要比完成单个操作的多个语句块快。故要找出可以组合在一起的语句，以减来整体的执行时间。这里列举几种模式
 
 1.多个变量声明
- 
+```
 // 避免
 var i = 1;
 var j = "hello";
@@ -164,16 +176,18 @@ var i = 1,
     j = "hello",
     arr = [1,2,3],
     now = new Date();
+```
 2.插入迭代值
- 
+```
 // 避免
 var name = values[i];
 i++;
  
 // 提倡
 var name = values[i++];
+```
 3.使用数组和对象字面量，避免使用构造函数Array(),Object()
- 
+```
 // 避免 
 var a = new Array();
 a[0] = 1;
@@ -190,6 +204,7 @@ var o = {
     name : "bill",
     age : 13
 };
+```
 4.优化DOM交互
 在JS中，DOM无疑是最慢的一部分，DOM操作和交互要消耗大量时间，因为它们往往需要重新渲染整个页面或者某一个部分，故理解如何优化与DOM的交互可以极大提高脚本完成的速度。后面会针对性说明
 
@@ -340,27 +355,30 @@ for(var prop in object){
 - 迭代的次数
 一般数组array遍历写法的循环中，每次都会有如下操作：
 1.在控制条件中查找一次属性array.length
-2.在控制条件中执行一次数值比较i<array.length
-3.比较循环条件是否满足，i<array.length === true
-4.一次自增或自减操作i++||i--
+2.在控制条件中执行一次数值比较 (i<array.length)
+3.比较循环条件是否满足，(i<array.length === true)
+4.一次自增或自减操作 (i++||i--)
 5.数组、对象查找 array[i]
 6.具体事务处理
 将length提前获取并存到变量中可以减少两步（1和2），当循环复杂度为O(n)时，减少每次迭代的工作量是最有效的，当复杂度大于O(n)，需要着重减少迭代次数。
-达夫设备（Duff`s Device）
-var items = Array(1000),iterations = Math.floor(items.length/8),startAt = items.length%8,i=0;
-do {
-    switch(startAt){
-        case 0:process(items[i++]);
-        case 7:process(items[i++]);
-        case 6:process(items[i++]);
-        case 5:process(items[i++]);
-        case 4:process(items[i++]);
-        case 3:process(items[i++]);
-        case 2:process(items[i++]);
-        case 1:process(items[i++]);
+### 条件判断
+> if-else vs switch
+条件数量越多，switch的迭代效率会更高；当只有二选一或简单判断if-else的易读性更好。在实际coding中，如果只有二选一，有些情况甚至可以不用if-else，采用三目运算：result = (true||false)?condition0:condition1;还有将最可能发生的条件写到“if（）”里面，减少判断次数，延伸开来就是if-elseif的判断可能性要从大到小。甚至可以采用二分法：
+```
+//---假设某参数的值非正即负，或查询二叉树，或查询不同SP的手机号
+if(parse>0){
+    if(parse>10){
+        //code
+    }else if(parse<5&&parse>1){
+        //code
+    }else{
+
     }
-    startAt = 0;
-}while(--iterations)
+}else{
+    //code 负数处理
+}
+```
+当然，这是个简单的栗子，还有很多其它的方式可以在代码中引入算法，提高效率
 ## 字符串和正则
 
 ## 快速响应的页面
