@@ -287,8 +287,7 @@ offsetTop、offsetLeft、offsetWidth、offsetHeight
 scrollTop、scrollLeft、scrollWidth、scrollHeight
 clientTop、clientLeft、clientWidth、clientHeight
 getComputedStyle() (currentStyle in IE)
-```                      
-                                                 ```
+
 function scroller(){
     var H = document.body.offsetHeight || scrollHeight
     return function(){
