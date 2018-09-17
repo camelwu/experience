@@ -1,5 +1,5 @@
 # expericences
-Many years of work experience
+优化的一些心得，请移步链接 [优化](https://github.com/camelwu/experience/blob/master/md/optimize.md) 
 
 ## react 
 prereact

@@ -450,14 +450,15 @@ function memfacttail(n){
 ## 字符串和正则
 
 ## 快速响应的页面
+老生常谈的内容，如果让页面秒开；可优化的点有哪些？
 ### 浏览器线程
 
 ### event loop
-> 阮一峰老师说的更好，请移步链接
+阮一峰老师说的更好，请移步链接
 [This link](http://www.ruanyifeng.com/blog/2014/10/event-loop.html) 
 
 ### Web Workers
-从Google的Gears插件提出了Worker Pool API，它就是Web Workers的“原型”，最初希望能够增强浏览器的功能，比如支持离线浏览（离线访问缓存页面，重新上线后提交离线操作），但（2015/11）已经被弃用了。HTML5开始Web Workers API被分离出去，成立单独的规范。自此，我们可以将计算、编解码、真正的异步请求等放到Web Workers里.
+> 从Google的Gears插件提出了Worker Pool API，它就是Web Workers的“原型”，最初希望能够增强浏览器的功能，比如支持离线浏览（离线访问缓存页面，重新上线后提交离线操作），但（2015/11）已经被弃用了。HTML5开始Web Workers API被分离出去，成立单独的规范。自此，我们可以将计算、编解码、真正的异步请求等放到Web Workers里.
 + 运行环境
 worker的global context并不是window，而是self，self也提供一系列接口，包括self.JSON、self.Math、self.console等等，最直观的区别是document对象没了，但location（readonly）、navigator还在；所以DOM访问也不存在。要启用它只能在创建一个独立的js文件并通过下面的方式调用
 html中直接写
@@ -564,25 +565,17 @@ sWorker.port.onmessage = function(e) {
   console.log('Message received from worker');
 }
 ```
-## 编程实践
-### 栗子
 
-### 使用Object、Array直接量
-
-### 避免重复执行
-
-### 使用速度快的api
-
-## 工具Tools
-
+## 工具
+debug工具
 ### YUI
 ### Firebug
 ### IE
 ### Safari
 ### Chrome
-
+优化工具
 ### page speed
-###  Fiddler
-###  YSlow
-###  dynaTrace
+### Fiddler
+### YSlow
+### dynaTrace
 
