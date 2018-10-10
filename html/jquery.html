@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>javascript</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="screen-orientation" content="portrait" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+    <textarea id="area">test</textarea>
+    </div>
+</body>
+<script>
+    var area = document.getElementById('area'),
+    code = ['<option value="0">0</option>','<option value="1">1</option>','<option value="2">2</option>'];
+    area.onclick = function(){
+        var self = this, parent = self.parentNode, sel;
+        if(!document.getElementById('a-sel')){//先判断是不是有动态select
+            sel = document.createElement('select');
+            parent.appendChild(sel);
+            sel.id = "a-sel"
+        }
+        sel = document.getElementById('a-sel')
+        // 不兼容ie
+        sel.innerHTML = code.join('');
+        // 兼容IE
+        /*for(var i=0,l = code.length;i<l;i++){
+            var option = document.createElement("option");
+            option.value = ''+i;
+            option.innerHTML = ''+i;
+            sel.appendChild(option);
+        }*/
+    }
+</script>
+</html>
