@@ -239,5 +239,30 @@ background-color:#E5E5E5;*/
         return b;
     }
     console.table(fn02(arr))
+    function ef(arg){
+        arg[0] = arg[2]
+    }
+    function g(a,b,c=3){
+
+        c = 10
+        console.log(arguments)
+        ef(arguments)
+        console.log(arguments)
+
+    }
+    g(1,1,1);
+    function sidEffecting(ary) {
+        console.log(ary[2])
+  ary[0] = ary[2];
+ }
+function bar(a,b,c=3) {
+   c = 10
+   console.log(arguments)
+   sidEffecting(arguments);
+   console.log(a,b,c)
+   return a + b + c;
+}
+console.log(bar(1,1,1))
+
 </script>
 </html>

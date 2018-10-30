@@ -1,3 +1,7 @@
+### 理解
+通过object.define()方式进行双向数据绑定（劫持和事件广播）因其双向绑定的特性，所以生命周期相对简单，线性的。  
+从beforecreate->created->mounted
+### 常见问题
 路由变化页面数据不刷新问题
 setTimeout/setInterval(泛指异步回掉函数的this指向)this指向改变，无法用this访问VUe实例
 setInterval路由跳转继续运行并没有及时进行销毁
@@ -139,4 +143,4 @@ proxyTable: {
 
 1： vue-router的 history 模式
 2： 服务nginx配置
-这个问题讲完整今天我下不了班了! 具体详情 可以猛戳 如何部署单页面项目到服务
+
