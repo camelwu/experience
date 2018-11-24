@@ -1,5 +1,5 @@
 # Front-End知识
-前端的基础知识看似很少：html、css、js，实则不然；随着这些年前端技术和大量优秀框架的产生，已经让没太更新知识的人捉襟见肘；包括我自己。借着最近不上班，整理了一些前端的知识，发现要写的东西实在太多。这个blog把我自己的经验结合其他优秀前端分享的知识做一个整理。  
+前端的基础知识看似很少：html、css、js，实则不然；随着这些年前端工程化、自动化盛行还有大量优秀框架的产生，已经让没太更新知识的人捉襟见肘。这个blog把我自己的经验结合其他优秀前端分享的知识做一个整理和沉淀。  
 
 从打开浏览器输入网址，到页面显示出来，拢共分几步？  
 答：5步（粗略）  
@@ -43,17 +43,22 @@ https
 浏览器拿到数据了，开始加载和解析，css和js文件都是带一定阻塞性的，就有了文件包管理的点。
 第五步：浏览器开始进行解析和渲染  
 首先解析html和css，并生成dom树，在这个阶段就要注意重排和重绘两个点，也是dom操作需要注意的点。
-es6 Generator等
 
-模块化，es6的模块化require、exports module.exports异同
-请见思维导图
+
+es6
+Generator等
+
+
+移步链接 [思维导图](https://github.com/camelwu/experience/blob/master/md/Modular.md) 
 
 ## expericences
-优化的一些心得，请移步链接 [优化](https://github.com/camelwu/experience/blob/master/md/optimize.md) 
+移步链接 [优化](https://github.com/camelwu/experience/blob/master/md/optimize.md) 
 ## 模块化发展
-
+移步链接 [模块化](https://github.com/camelwu/experience/blob/master/md/Modular.md) 
 # mv*前端框架
 ## mvc
+module+view+control，数据、视图和控制器分离，相对独立，各自运行。最典型的也最容易理解的是PHP，天然的mvc模式；数据处理有专门的部分（query参数=>SQL查询=>数据输出）；control控制器做为公用库类，处理相应的业务逻辑；smarty模版直接把内容进行输出。如果换成mcv或cmv会更好理解，之所以提PHP是因为现在前端上的mvc模式也是类似的做法。  
+从param参数中拿到对应的方法C，获取数据M，返回数据渲染到视图上V。简单的两个例子，请移步链接 [mvc模式](https://github.com/camelwu/experience/blob/master/md/mvc.md) 
 ## mvvm
 从Angular开始，开启了前端只需要注重数据和逻辑的开放式，但事实上各个框架的基因决定了其应用场景和适用的团队
 ### Angular
