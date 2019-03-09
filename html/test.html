@@ -197,12 +197,12 @@ background-color:#E5E5E5;*/
 </body>
 <script></script>
 <script>
-    var arr = ['1',2,3,4,'dd',4,5,6,6,'dd',7,8,1,0]
+    var arr = ['1', 2, 3, 4, 'dd', 4, 5, 6, 6, 'dd', 7, 8, 1, 0]
     // 数组下标
-    function fn00(a){
-        var l=a.length,c=[];
-        for(var i=0;i<l;i++){
-            if(a.indexOf(a[i])==i){
+    function fn00(a) {
+        var l = a.length, c = [];
+        for (var i = 0; i < l; i++) {
+            if (a.indexOf(a[i]) == i) {
                 c.push(a[i]);
             }
         }
@@ -210,10 +210,10 @@ background-color:#E5E5E5;*/
     }
     console.table(fn00(arr))
     // 2个数组
-    function fn01(a){
-        var c = [],l=a.length;
-        for(var i=0;i<l;i++){
-            if(c.indexOf(a[i])==-1){
+    function fn01(a) {
+        var c = [], l = a.length;
+        for (var i = 0; i < l; i++) {
+            if (c.indexOf(a[i]) == -1) {
                 c.push(a[i]);
             }
         }
@@ -221,16 +221,16 @@ background-color:#E5E5E5;*/
     }
     console.table(fn01(arr))
     // object中转
-    function fn02(a){
-        var c = {},b=[],l=a.length;
-        for(var i=0;i<l;i++){
+    function fn02(a) {
+        var c = {}, b = [], l = a.length;
+        for (var i = 0; i < l; i++) {
             var val = a[i],
-            type = typeof val;
-            if(!c[val]){
+                type = typeof val;
+            if (!c[val]) {
                 console.log('push');
-                c[val]=[type];
+                c[val] = [type];
                 b.push(a[i]);
-            }else if(c[val].indexOf(type)) {
+            } else if (c[val].indexOf(type)) {
                 console.log('has')
                 c[val].push(type);
                 b.push(val);
@@ -239,10 +239,10 @@ background-color:#E5E5E5;*/
         return b;
     }
     console.table(fn02(arr))
-    function ef(arg){
+    function ef(arg) {
         arg[0] = arg[2]
     }
-    function g(a,b,c=3){
+    function g(a, b, c = 3) {
 
         c = 10
         console.log(arguments)
@@ -250,19 +250,28 @@ background-color:#E5E5E5;*/
         console.log(arguments)
 
     }
-    g(1,1,1);
+    g(1, 1, 1);
     function sidEffecting(ary) {
         console.log(ary[2])
-  ary[0] = ary[2];
- }
-function bar(a,b,c=3) {
-   c = 10
-   console.log(arguments)
-   sidEffecting(arguments);
-   console.log(a,b,c)
-   return a + b + c;
-}
-console.log(bar(1,1,1))
-
+        ary[0] = ary[2];
+    }
+    function bar(a, b, c = 3) {
+        c = 10
+        console.log(arguments)
+        sidEffecting(arguments);
+        console.log(a, b, c)
+        return a + b + c;
+    }
+    console.log(bar(1, 1, 1))
+    function apd() {
+        var arr = [];
+        for (var i = 1; i <= 3; i++) {
+            arr.push(function () { return i * i })
+        }
+        return arr;
+    }
+    var results = apd();
+    console.log('res=', results[0])
 </script>
+
 </html>
