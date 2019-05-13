@@ -74,4 +74,19 @@ zinder纯模版，采取什么技术？内嵌变量，极不安全；需要尽�
 HLA能否采用UI库，以便专注于业务开发？可，追求速度  
 HOA是否算告一段落？暂时  
 
-什么时候可以改版
+什么时候可以改版，JavaScript转化成Swift
+
+
+https://segmentfault.com/a/1190000015684895
+
+https://www.jianshu.com/p/bd481b5dda7f
+
+https://blog.csdn.net/fenqing666/article/details/82979644
+吸顶
+https://juejin.im/post/5caa0c2d51882543fa41e478?utm_source=gold_browser_extension
+RN
+https://facebook.github.io/react-native/docs/getting-started.html
+https://www.jianshu.com/p/cea3f749cdac
+https://www.jianshu.com/p/6254ee9863f7
+https://blog.csdn.net/vivian_king/article/details/79494563
+https://snack.expo.io/
