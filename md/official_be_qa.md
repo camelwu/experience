@@ -75,7 +75,7 @@ HLA能否采用UI库，以便专注于业务开发？可，追求速度
 HOA是否算告一段落？暂时  
 
 什么时候可以改版，JavaScript转化成Swift
-
+https://my.oschina.net/mdxlcj/blog/1802438
 
 https://segmentfault.com/a/1190000015684895
 
@@ -90,3 +90,4 @@ https://www.jianshu.com/p/cea3f749cdac
 https://www.jianshu.com/p/6254ee9863f7
 https://blog.csdn.net/vivian_king/article/details/79494563
 https://snack.expo.io/
+https://github.com/SethWen/MongooseLib
