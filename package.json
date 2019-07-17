@@ -1,0 +1,28 @@
+{
+  "name": "experience",
+  "version": "1.0.0",
+  "description": "前端的基础知识看似很少：html、css、js，实则不然；随着这些年前端工程化、自动化盛行还有大量优秀框架的产生，已经让没太更新知识的人捉襟见肘。这个blog把我自己的经验结合其他优秀前端分享的知识做一个整理和沉淀。",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camelwu/expericences.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camelwu/expericences/issues"
+  },
+  "homepage": "https://github.com/camelwu/expericences#readme",
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-jshint": "^2.1.0",
+    "grunt-contrib-uglify": "^4.0.1"
+  }
+}
