@@ -14,16 +14,16 @@ nrm ls
 ```
 nrm current
 ```
-用add 命令添加公司私有npm源，http://100.87.0.126:4873，别名lvyue
+用add 命令添加公司私有npm源，http://domain:4873，别名mime
 ```
-nrm add lvyue http://100.87.0.126:4873
+nrm add mime http://domain:4873
 ```
-查看nrm配置，发现最lvyue添加成功通过命令，切换repo
+查看nrm配置，发现最mime添加成功通过命令，切换repo
 ```
-nrm use lvyue
+nrm use mime
 ```
 执行成功提示
-> Registry has been set to: http://100.87.0.126:4873
+> Registry has been set to: http://domain:4873
 
 还有其它操作命令，请见[npmjs](https://www.npmjs.com/package/nrm)
 ### 安装私有组件库
@@ -33,7 +33,7 @@ cd ~/project && npm i ly-components@0.7.0 && npm run dev
 ```
 “&&”是串行执行，执行完毕可以开始开发；当然，如果大家需要安装其它的库，比如react、lodash之类的，最好是把nrm的源切到npm或cnpm，速度更快些，通过私有库是走代理的，可以测试速度
 ```
-npm test lvyue
+npm test mime
 ##result:
 npm ---- 1547ms
 ```
@@ -41,13 +41,13 @@ npm ---- 1547ms
 ### 私有组件迭代
 如果库的功能不能满足你的需求，请按以下方法进行迭代修改，假设你之前没有在本地有过开发库
 ```
-cd ~ && git clone git@gitlab.lvyuetravel.com/lvyue_font/ly-components && cd ly-components && git pull --all && git checkout -b feature && npm run dev
+cd ~ && git clone git@gitlab.mime.com/font-end/ly-components && cd ly-components && git pull --all && git checkout -b feature && npm run dev
 ```
-开发完成后，修改注释文档，和package.json，并发布一个版本，假设还是在lvyue的源上
+开发完成后，修改注释文档，和package.json，并发布一个版本，假设还是在`mime`的源上
 ```
 npm login
 ```
-用户名：lvyue，密码：123456输入后，就可以发布
+输入用户名和密码后，就可以发布
 ```
 npm publish
 ```

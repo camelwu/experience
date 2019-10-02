@@ -1,4 +1,4 @@
-## 前端是一种GUI软件
+# 前端是一种GUI软件
 现如今前端可谓包罗万象，产品形态五花八门，涉猎极广，什么高大上的基础库/框架，拽炫酷的宣传页面，还有屌炸天的小游戏……不过这些一两个文件的小项目并非是前端技术的主要应用场景，更具商业价值的则是复杂的Web应用，它们功能完善，界面繁多，为用户提供了完整的产品体验，可能是新闻聚合网站，可能是在线购物平台，可能是社交网络，可能是金融信贷应用，可能是音乐互动社区，也可能是视频上传与分享平台……  
 > 从本质上讲，所有Web应用都是一种运行在网页浏览器中的软件，这些软件的图形用户界面（Graphical User Interface，简称GUI）即为前端。  
 
@@ -8,7 +8,7 @@
 
 尽管Web应用的复杂程度与日俱增，用户对其前端界面也提出了更高的要求，但时至今日仍然没有多少前端开发者会从软件工程的角度去思考前端开发，来助力团队的开发效率，更有甚者还对前端保留着”如玩具般简单“的刻板印象，日复一日，CV大法刀耕火种。  
 
-网站开发（asp、php、jsp等不分离）->前后分离（简单构建）->工程、模块化开发，技术已经日新月异，学不动也要学。
+网站开发（asp、php、jsp等不分离）-> 前后分离（简单构建）-> 工程化模块化开发，技术已经日新月异。
 
 ### 前端工程的三个阶段
 现在的前端开发倒也并非一无所有，回顾一下曾经经历过或听闻过的项目，为了提升其前端开发效率和运行性能，前端团队的工程建设大致会经历三个阶段：
@@ -24,7 +24,7 @@ css：animate.css，normalize.css
 
 选型之后基本上就可以开始敲码了，不过光解决开发效率还不够，必须要兼顾运行性能。前端工程进行到第二阶段会选型一种构建工具，对代码进行压缩，校验，之后再以页面为单位进行简单的资源合并。  
 
-grunt，gulp 对资源进行压缩合并和打包，当然，这两个技术已经更新换代很久，只是现在使用的人不多了。  
+[grunt](./grunt.md)和[gulp](./gulp.md)， 对资源进行压缩合并和打包，当然，这两个技术已经更新换代很久，只是现在使用的人不多了。  
 
 #### 第三阶段：JS/CSS模块化开发
 
@@ -36,7 +36,7 @@ namespace方式，requireJs，seaJs，webpack，less，sass可以看到前端模
 
 不管将来是否要复用某段代码，请将其分治为一个模块。  
 
-现在Js模块化方案很多，AMD|CMD/CommonJS/UMD/ES6 Module等，对应的框架和工具也一大堆，说起来很烦，大家自行百度吧；CSS模块化开发基本都是在less、sass、stylus、postcss等预处理器的import/mixin特性支持下实现的。
+现在Js[模块化](./Modular.md)方案很多，AMD|CMD/CommonJS/UMD/ES6 Module等，对应的框架和工具也一大堆，说起来很烦，大家自行百度吧；CSS模块化开发基本都是在less、sass、styls、postcss等预处理器的import/mixin特性支持下实现的。
 
 #### 第四阶段
 
@@ -44,9 +44,9 @@ namespace方式，requireJs，seaJs，webpack，less，sass可以看到前端模
 
 大体量：多功能、多页面、多状态、多系统；
 大规模：多人甚至多团队合作开发；
-高性能：CDN部署、缓存控制、文件指纹、缓存复用、请求合并、按需加载、同步/异步加载、[移动端骨架屏](http://gitlab.lvyuetravel.com/camel/technology-share/blob/master/md/skeleton-content-loader.md)、HTTP 2.0服务端资源推送。
+高性能：CDN部署、缓存控制、文件指纹、缓存复用、请求合并、按需加载、同步/异步加载、[移动端骨架屏](./skeleton-content-loader.md)、HTTP 2.0服务端资源推送。
 > 进阶阅读：  
-[怎样开发和部署前端代码？](http://gitlab.lvyuetravel.com/camel/technology-share/blob/master/md/version.md)   
-[适用旅悦的简单方案](http://gitlab.lvyuetravel.com/camel/technology-share/blob/master/md/dist2compress4push.md) 
+[怎样开发和部署前端代码？](./version.md)   
+[适用旅悦的简单方案](./dist2compress4push.md) 
 
 前面讲的三个阶段虽然相比曾经“茹毛饮血”的时代进步不少，但用于支撑第四阶段的多人合作开发以及精细的性能优化，还需经历一系列工程问题。
