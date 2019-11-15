@@ -1,4 +1,6 @@
-今后创建类js文件，请大家都写上注释。后续我将使用工具生成html或markdown文件
+# Js 自动化文档
+
+写上注释。可使用工具生成html或markdown文件
 
 ### 添加代码文档
 参照如下规则，直接在代码中编写文档。
@@ -49,3 +51,8 @@ console.log('Hello, ' + this.getFullName());
 npm install jsdoc && jsdoc helloworld.js
 ```
 就可以看到相对应的index.html
+
+### react-stroybook
+
+通过props-type和其它注释生成文档。
+
