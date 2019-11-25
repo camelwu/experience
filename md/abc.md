@@ -86,3 +86,50 @@ func();
 undefined
 3
 ```
+## 应用场景
+1. 求数组中的最大和最小值
+```
+var arr = [1,2,3,89,46]
+var max = Math.max.apply(null,arr)//89
+var min = Math.min.apply(null,arr)//1
+```
+2. 将类数组转化为数组
+```
+var trueArr = Array.prototype.slice.call(arrayLike)
+```
+3. 数组追加
+```
+var arr1 = [1,2,3];
+var arr2 = [4,5,6];
+var total = [].push.apply(arr1, arr2);//6
+// arr1 [1, 2, 3, 4, 5, 6]
+// arr2 [4,5,6]
+```
+4. 判断变量类型
+```
+function isArray(obj){
+    return Object.prototype.toString.call(obj) == '[object Array]';
+}
+isArray([]) // true
+isArray('dot') // false
+```
+5. 利用call和apply做继承
+```
+function Person(name,age){
+    // 这里的this都指向实例
+    this.name = name
+    this.age = age
+    this.sayAge = function(){
+        console.log(this.age)
+    }
+}
+function Female(){
+    Person.apply(this,arguments)//将父元素所有方法在这里执行一遍就继承了
+}
+var dot = new Female('Dot',2)
+// 使用 log 代理 console.log
+function log(){
+  console.log.apply(console, arguments);
+}
+// 当然也有更方便的 var log = console.log()
+```
