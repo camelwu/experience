@@ -54,7 +54,7 @@
 /package.json
 ```
 {
-    "name": "zilly_webapp",
+    "name": "webapp",
     "version": "0.1.0",
     "private": true,
 +   "pathname": "discover",
@@ -203,9 +203,4 @@ shell.exec('git push');
 
 log(chalk.green.bold('结束'))
 ```
-
-时间仓促，就只把需要调整的地方写出来  
-10月24日开始，每个人晚上5点的时候在自己的项目中就运行`npm run deploy:qa`，交叉（互相）冒烟测试后，再到webapp-sandbox上跑个脚本让美国那边可以看到成果。
-
-另外，也请大家把当天的成果整理个list出来。
 
