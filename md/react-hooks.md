@@ -1,25 +1,139 @@
 ---
-title: redux入门
+title: hooks入门
 tags:
-  - javascript
-categories: redux
-date: 2019-08-15 14:22:12
+  - javascript, react, hooks
+categories: hooks
+date: 2019-12-23 14:22:12
 ---
+hooks 是react 16.8 引入的特性，允许在不写class的情况下操作state 和react的其他特性。
+hooks 只是多了一种写组件的方法，使编写一个组件更简单更方便，同时可以自定义hooks把公共的逻辑提取出来，让逻辑在多个组件之间共享。直接看[官网](https://reactjs.org/docs/hooks-intro.html)会更好。
+> hooks 在react.component里不生效
+hooks常用api有：useState、useEffect、useContext、useReducer、useRef等。为function提供类component的功能。
 
-### 为什么要使用redux？为何出现？
+## 为什么要使用hooks？
 
-* 大型复杂应用（大部分可能不需要）
-* 组件间的通讯，数据状态共享
-* 全局状态改变
-* 修改另一组件状态
-* 数据状态可预测
+* 函数应用，提高渲染速度
+* 大型复杂应用上下文
+* 提高组件的复用
 
-### redux的历史
+## 怎么用？
+* useState
 
-* redux的前身flux
-* 函数式编程
+state在function是不能使用的。useState后就可以直接使用state，代码如下：
 
-### redux的概念和介绍
+```
+import React, { useState } from 'react';
+
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+设置函数，一般命名为set前缀的驼峰型，像上面的count和setCount，`state`和`更新state`的方法
+* useEffect
+
+useEffect方法是在每次渲染之后执行，可以理解为class写法中的 componentDidMount / componentDidUpdate（为了方便理解可以这么理解，但不完全一样）
+```
+useEffect(didUpdate);
+```
+参数：function，在每次渲染之后执行，在函数里可以编写更新dom，添加订阅等。
+
+参数返回值：function(可以不返回) 如果 didUpdate函数中返回了一个函数，这个函数会在组件卸载前执行(每次渲染都会执行)需要清除上次订阅的内容可以再这里面写。
+
+执行条件：useEffect 的第二个参数是一个数组，只有当数组中的的值发生改变的时候才会调用effect，如果执行在第一次挂载和卸载的时候调用，只需要传一个[]空数组。
+
+下面通过一个组件实例来说明
+
+```
+export function useMoveEffect() {
+  // 第二个参数传了固定值 [] 
+  // 相当于 componentDidMount
+  useEffect(() => {
+    // 实现拖拽逻辑
+  }, []);
+}
+
+export function useDrawMarkEffect(cur) {
+  useEffect(() => {
+    // 实现水印逻辑
+  }, []);
+}
+
+export function useResetEffect(cur); {
+  // 第二个参数传了固定值 [ cur ] 
+  // 相当于 componentDidUpdate 比较 cur
+  useEffect(() => {
+    // 实现重置逻辑
+  }, [ cur ]);
+}
+
+function useOtherImageEffect(...) {
+  useEffect(() => {
+    // 实现image特有逻辑
+  }, [ ... ]);
+}
+
+function ImageModal (props) {
+  // 细分 Effect，方便复用
+  useMoveEffect();
+  useDrawMarkEffect();
+  useResetEffect(props.cur);
+  ...
+
+  useOtherImageEffect(...);
+
+  return <>
+    ...
+    <img ... />
+  </>
+  
+}
+```
+根据上面的代码，那么export出来的函数，其它组件也可以进行调用，如下：
+```
+import { useMoveEffect, useDrawMarkEffect, useResetEffect } from './imageModal'
+
+function useOtherHtmlEffect(...) {
+  useEffect(() => {
+    // 实现html特有逻辑
+  }, [ ... ]);
+}
+
+function HtmlModal (props) {
+  // 细分 Effect，方便复用
+  useMoveEffect();
+  useDrawMarkEffect();
+  useResetEffect(props.cur);
+  ...
+
+  useOtherHtmlEffect(...);
+
+  return <>
+    ...
+    <img ... />
+  </>
+  
+}
+```
+以上，实现了生命周期中重复逻辑的复用。以后无论新增什么modal，都可以复用。做好文档工作，组件变得更小，开发速度更快。
+
+* useContext
+const value = useContext(MyContext);
+
+获取context 的值，类似于class 写法中的static contextType = MyContext ,当使用了useContext会在context 的值发生改变的时候重新render。
+
+参数 接收对象是React.createContext 的返回值
+返回值 context 里的内容
+## redux的概念和介绍
 
 **如果你不知道是否需要 Redux，那就是不需要它。**
 
