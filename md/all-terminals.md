@@ -87,14 +87,14 @@
 
 |框架|技术栈|	案例|	微信小程序|	支付宝小程序|	百度小程序|	头条小程序|	H5|	App|
 | --- | -----:   | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
-|Taro|	React|	丰富|	⭕|	⭕|	⭕|	⭕|	⭕|	⭕|
-|wepy|	Vue	|丰富	|⭕	|❌|	❌|❌	|❌	|❌|
-|mpvue|	Vue	|丰富	|⭕|	❌|	❌|	❌|	⭕|️	❌|
-|uni-app|Vue|丰富	|⭕|	⭕|	⭕️|	⭕|	⭕️|	⭕|
-|Megalo|Vue	|少	|⭕	|⭕️|⭕️|	❌|❌|❌|
-|OKAM|	Vue	|少|	⭕	|⭕	|⭕	|⭕| ❌| ❌|
-|Mpx|	Vue	|少|	⭕	|❌	|❌	|❌|	❌| ❌|
-|Chameleon| Vue | 少| ⭕ |❌	|❌	|❌|	❌| ❌|
+|Taro|	React|	丰富|	Yes|	Yes|	Yes|	Yes|	Yes|	Yes|
+|wepy|	Vue	|丰富	|Yes	|No|	No|No	|No	|No|
+|mpvue|	Vue	|丰富	|Yes|	No|	No|	No|	Yes|️	No|
+|uni-app|Vue|丰富	|Yes|	Yes|	Yes️|	Yes|	Yes️|	Yes|
+|Megalo|Vue	|少	|Yes	|Yes️|Yes️|	No|No|No|
+|OKAM|	Vue	|少|	Yes	|Yes	|Yes	|Yes| No| No|
+|Mpx|	Vue	|少|	Yes	|No	|No	|No|	No| No|
+|Chameleon| Vue | 少| Yes |No	|No	|No|	No| No|
 |weex| Vue
 
 + 采用Vue技术栈，可考虑自研webapck编译，结合目前的小程序的技术；从vue打包成小程序，weex解决App问题
@@ -120,17 +120,17 @@
 |NPM/CNPM 下载量|	4413|		|||
 |案例	|丰富	|丰富 |1万+|	||
 |开发者人数	|~5000	|||||
-|自建开发者社区	|√ 有	|√ 有	||||
+|自建开发者社区	|Yes	|Yes	||||
 
 > 开发工具
 
 |工具/方案	|Taro	|uni-app|MpVue|	wepy|	Chameleon|
 | --- | :-----:   | :----: | :----: | :----: | :----: |
 |语法规范	|React, 类原生|	Vue||||
-|IDE/图形化开发工具|	× 无，有VSCode插件|	√||||	
-|语法校验工具	|√ IDE支持|	√ IDE支持||||
-|TypeScript |	√|	√||||
-|Typing/自动补全|	√ IDE支持|	√ IDE支持||||		
+|IDE/图形化开发工具|	× 无，有VSCode插件|	Yes||||	
+|语法校验工具	|Yes IDE支持|	Yes IDE支持||||
+|TypeScript |	Yes|	Yes||||
+|Typing/自动补全|	Yes IDE支持|	Yes IDE支持||||		
 |样式|	scss/less/stylus自编译构建|	scss/less/stylus||||
 
 > 组件库/工具库/Demo
@@ -141,9 +141,9 @@
 |第三方工具库|	丰富|	丰富||||
 |Demo|	丰富|	较丰富||||
 |状态管理工具|	Redux, Mobx, Dva|	Vuex||||		
-|转换微信小程序工具|	√ 有|	× 无	||||		
-|自研组件库|	√ 有|	√ 有||||
-|自动构建|	√ 有|	自建构建系统||||
+|转换微信小程序工具|	Yes|	× 无	||||		
+|自研组件库|	Yes|	Yes||||
+|自动构建|配置略繁琐|比较方便的构建系统||||
 
 ## 实践（坑）
 + 支付宝小程序  
