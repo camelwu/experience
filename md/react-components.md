@@ -1,4 +1,4 @@
-## 旅悦React组件库
+## React组件库
 
 ### 目标
 1. 自动化或半自动化开发  
@@ -35,18 +35,18 @@ npm update titans@version -S
 方式进行升级，并记录到package.json。  
 > 不同的版本适应不同的项目和线上环境，非同一版本，只要不升级，互相功能不干扰；今后需要约定所有的依赖包需要锁定版本号。
 
-详细过程请见[操作手册](http://gitlab.lvyuetravel.com/camel/technology-share/blob/master/md/sinopia.md)
+sinopia不再维护，建议采用vedaccio 私有库[操作](./vedaccio.md)
 
 + 类、库开发  
-
-需要采用[GitFork](http://gitlab.lvyuetravel.com/camel/technology-share/blob/master/md/forking.md)工作流，CR机制等都需引入。 
+分支的开发
+需要采用[GitFork](./forking.md)工作流，CR机制等都需引入。 
 
 + 文档  
 
 采取两种自动化的方式：  
 
 1. ant-D 库方式 （采取已有的手动方式，或架构师1周时间写个自动化工具）  
-2. 注释生成方式 [jsDoc](http://gitlab.lvyuetravel.com/camel/technology-share/blob/master/md/JSDoc.md)  
+2. 注释生成方式 [jsDoc](./JSDoc.md)  
 
 + js库 & 组件库 基础架构  
 js功能库  
@@ -135,8 +135,8 @@ project
     <td> 内网机器</td>
     <td> 完成</td>
     <td> 所有的库、包都可发布到这里<br/>
-    [操作手册](http://gitlab.lvyuetravel.com/camel/technology-share/blob/master/md/sinopia.md)  <br/>
-    [传送门](http://100.87.0.126:4873) </td>
+    [操作手册](./verdaccio.md)  <br/>
+    [传送门](https://github.com/verdaccio/verdaccio) </td>
   </tr>
   <tr>
     <td> 文档规范 </td>
@@ -210,7 +210,7 @@ Demo   <br/>
     <td> - </td>
     <td> 运维 <br/>测试 <br/>业务复合组件库</td>
     <td> -  </td>
-    <td> [初始方案](http://gitlab.lvyuetravel.com/camel/technology-share/blob/master/md/FE-microService.md) </td>
+    <td> [初始方案](./FE-microService.md) </td>
   </tr>
   </tbody>
 </table>
@@ -257,7 +257,7 @@ npm link
     -h, --help     output usage information
     -V, --version  output the version number
 ```
-[cli手册](http://gitlab.lvyuetravel.com/camel/technology-share/blob/master/md/titans-cli.md) 
+[cli手册](./titans-cli.md) 
 
 #### 阶段工作：  
 
