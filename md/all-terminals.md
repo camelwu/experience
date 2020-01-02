@@ -112,7 +112,7 @@
 
 ### 开发对比
 
-|流行度/方案	|Taro	|uni-app	MpVue	|wepy	|Chameleon|
+|流行度/方案	|Taro	|uni-app|	MpVue	|wepy	|Chameleon|
 | --- | :-----:   | :----: | :----: | :----: | :----: |
 |GitHub Star|	16588|	3734|	|	|	|
 |GitHub issue/PR|	382|	54|	|	|	|
