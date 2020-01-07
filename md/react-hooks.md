@@ -17,7 +17,7 @@ hooks常用api有：useState、useEffect、useContext、useReducer、useRef等�
 * 提高组件的复用
 
 ## 怎么用？
-* useState
+### useState
 
 state在function是不能使用的。useState后就可以直接使用state，代码如下：
 
@@ -39,7 +39,46 @@ function Example() {
 }
 ```
 设置函数，一般命名为set前缀的驼峰型，像上面的count和setCount，`state`和`更新state`的方法
-* useEffect
+
+### useContext
+const value = useContext(MyContext);
+
+获取context 的值，类似于class 写法中的static contextType = MyContext ,当使用了useContext会在context 的值发生改变的时候重新render。
+
+参数 接收对象是React.createContext 的返回值
+
+返回值 context 里的内容
+
+例子，顶层组件如下：
+```
+const AppContext = React.createContext({});
+
+<AppContext.Provider value={{
+  username: 'superawesome'
+}}>
+  <div className="App">
+    <Navbar/>
+    <Messages/>
+  </div>
+</AppContext.Provider>
+```
+非常接近Redux。上面代码中，`AppContext.Provider`提供了一个 `Context` 对象，这个对象可以被子组件共享。
+
+`Navbar` 组件的代码如下:
+```
+const Navbar = () => {
+  // 通过useContext来获取username
+  const { username } = useContext(AppContext);
+  return (
+    <div className="navbar">
+      <p>AwesomeSite</p>
+      <p>{username}</p>
+    </div>
+  );
+}
+```
+这种方式，避免过去父子、兄弟之间数据共享同步的繁琐
+### useEffect
 
 useEffect方法是在每次渲染之后执行，可以理解为class写法中的 componentDidMount / componentDidUpdate（为了方便理解可以这么理解，但不完全一样）
 ```
@@ -51,8 +90,43 @@ useEffect(didUpdate);
 
 执行条件：useEffect 的第二个参数是一个数组，只有当数组中的的值发生改变的时候才会调用effect，如果执行在第一次挂载和卸载的时候调用，只需要传一个[]空数组。
 
-下面通过一个组件实例来说明
+下面通过一个组件实例来说明，useState和useEffect结合，做成一个带loading的动态加载的函数组件
+```
+// import包
+import React, {useState, useEffect} from 'react';
+// 定义函数组件
+const getUser = ({userID}) => {
+  // 定义useState，是否显示loading和用户信息，初始loading为true user为空对象
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState({});
+  const [user, setUser] = useState({});
 
+  useEffect(()=>{
+    setLoading(true);
+    fetch(`/api/v1/user/{$userID}`)
+    .then(res => res.json())
+    .then(data => {
+      setUser(data);
+      setLoading(false);
+    },err => {
+      setError(err);
+      setLoading(false);
+    })//最后一个then，promise的错误抛出
+  },[userID]);
+  // 根据return特性，从loading·到error到显示完整的信息
+  if(loading) return <p>Loading ...</p>;
+  if(error) return <p>{error}</p>;//如有错误，显示错误，
+  return <div>
+    <p>You're viewing: {person.name}</p>
+    <p>Height: {person.height}</p>
+    <p>Mass: {person.mass}</p>
+  </div>
+  
+}
+```
+现在有个比较好用的Hooks库，[SWR传送门](https://www.npmjs.com/package/swr)，做翻页或异步加载非常方便。
+
+也可以把
 ```
 export function useMoveEffect() {
   // 第二个参数传了固定值 [] 
@@ -124,15 +198,42 @@ function HtmlModal (props) {
   
 }
 ```
-以上，实现了生命周期中重复逻辑的复用。以后无论新增什么modal，都可以复用。做好文档工作，组件变得更小，开发速度更快。
+以上，实现了生命周期中重复逻辑的复用。以后无论新增什么modal，都可以复用。做好文档工作，组件变得更小，开发速度更快。  
+### useReducer
 
-* useContext
-const value = useContext(MyContext);
+React 本身不提供状态管理功能，通常需要使用外部库。这方面最常用的库是 Redux。
 
-获取context 的值，类似于class 写法中的static contextType = MyContext ,当使用了useContext会在context 的值发生改变的时候重新render。
+Redux 的核心概念是，组件发出 action 与状态管理器通信。状态管理器收到 action 以后，使用 Reducer 函数算出新的状态，Reducer 函数的形式是`(state, action) => newState`。
 
-参数 接收对象是React.createContext 的返回值
-返回值 context 里的内容
+`useReducers()`钩子用来引入 Reducer 功能。
+```
+import { useReducer } from 'react';
+
+const myReducer = (state, action) => {
+  switch(action.type)  {
+    case('countUp'):
+      return  {
+        ...state,
+        count: state.count + 1
+      }
+    default:
+      return  state;
+  }
+}
+const MyApp() {
+  // const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(myReducer, { count:   0 });
+  return  (
+    <>
+      <button onClick={() => dispatch({ type: 'countUp' })}>
+        +1
+      </button>
+      <p>Count: {state.count}</p>
+    </>
+  );
+}
+```
+Hooks 可以提供共享状态和 Reducer 函数，所以它在这些方面可以取代 Redux。但是，它没法提供中间件（middleware）和时间旅行（time travel），如果你需要这两个功能，还是要用 Redux。
 ## redux的概念和介绍
 
 **如果你不知道是否需要 Redux，那就是不需要它。**
