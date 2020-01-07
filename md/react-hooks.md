@@ -1,10 +1,4 @@
----
-title: hooks入门
-tags:
-  - javascript, react, hooks
-categories: hooks
-date: 2019-12-23 14:22:12
----
+
 hooks 是react 16.8 引入的特性，允许在不写class的情况下操作state 和react的其他特性。
 hooks 只是多了一种写组件的方法，使编写一个组件更简单更方便，同时可以自定义hooks把公共的逻辑提取出来，让逻辑在多个组件之间共享。直接看[官网](https://reactjs.org/docs/hooks-intro.html)会更好。
 > hooks 在react.component里不生效
