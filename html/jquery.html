@@ -19,33 +19,59 @@
             padding: 0;
         }
     </style>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div>
-    <textarea id="area">test</textarea>
+    <textarea id="area" data-bind-101="values">test</textarea>
     </div>
 </body>
 <script>
-    var area = document.getElementById('area'),
-    code = ['<option value="0">0</option>','<option value="1">1</option>','<option value="2">2</option>'];
-    area.onclick = function(){
-        var self = this, parent = self.parentNode, sel;
-        if(!document.getElementById('a-sel')){//先判断是不是有动态select
-            sel = document.createElement('select');
-            parent.appendChild(sel);
-            sel.id = "a-sel"
+function DataBinder(object_id){
+    var pubSub = jQuery({}),
+    data_attr = "bind-" + object_id,
+    message = object_id + ":change";
+    jQuery(document).on("change","[data-"+data_attr+"]",function(evt){
+        var input = jQuery(this);
+        pubSub.trigger(message, [$input.data(data_attr), $input.val()])
+    });
+    pubSub.on(message, function(evt, prop_name, new_val){
+        jQuery("[data-"+ data_attr +"="+prop_name+"]").each(function(){
+            var $bound = jQuery(this);
+            if($bound.is("input,text area,select")){
+                $bound.val(new_val);
+            }else{
+                $bound.html(new_val);}
+        });
+    });
+    return pubSub;
+}
+function User(uid){
+    var binder = new DataBinder(uid),
+    user = {
+        atttibutes: {},
+        //属性设置器使用数据绑定器PubSub来发布变化   
+        set: function(attr_name,val){
+            this.attriures[attr_name] = val;
+            binder.trigger(uid + ":change", [attr_name, val, this]);
+        },
+
+        get: function(attr_name){
+            return this.attributes[attr_name];
+        },
+
+        _binder: binder
+    };
+
+    binder.on(uid +":change",function(vet,attr_name,new_val,initiator){
+        if(initiator !== user){
+            user.set(attr_name,new_val);
         }
-        sel = document.getElementById('a-sel')
-        // 不兼容ie
-        sel.innerHTML = code.join('');
-        // 兼容IE
-        /*for(var i=0,l = code.length;i<l;i++){
-            var option = document.createElement("option");
-            option.value = ''+i;
-            option.innerHTML = ''+i;
-            sel.appendChild(option);
-        }*/
-    }
+    })
+    // return user;
+}
+var user = new User(101);
+user.set("values","Wolfgang");
 </script>
 </html>

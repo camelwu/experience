@@ -16,17 +16,10 @@ webapp-onboarding=>user
 ## useage
 本地运行
 ```
-git clone git@github.com:zillyinc/webapp-express.git && cd webapp-express &&
-npm install && npm run dev
-```
-webapp-sandbox服务器，已经配置好了ssh和目录，在`/home/ubuntu/web/webapp-express`里运行  
-```
-git pull
-```
-就可以拉取最新发布的代码，传输到nginx目录中，命令如下：  
-```
-# sudo first
-npm run deploy
+git clone git@github.com:camelwu/webapp-express.git
+&& cd webapp-express
+&& npm install 
+&& npm run dev
 ```
 
 ## 技术说明
@@ -77,8 +70,4 @@ app.use(history({
   ]
 }));
 ```
-除此之外，并无其它需要特殊说明的。
 
-如果有问题随时联系我
-
-paul.wu@zilly.com.cn
