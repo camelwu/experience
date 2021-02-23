@@ -112,3 +112,40 @@ $ pm2 generate                  # Generate a sample json configuration file
     --deep-monitoring                                            enable all monitoring tools (equivalent to --v8 --event-loop-inspector --trace)
     -h, --help                                                   output usage information
 ```
+## pm2-logrotate
+操作格式：  
+```JS
+pm2 set pm2-logrotate:{paramName} {value}
+
+// e.g:
+
+pm2 set pm2-logrotate:max_size 1K (1KB)
+pm2 set pm2-logrotate:compress true (compress logs when rotated)
+pm2 set pm2-logrotate:rotateInterval '*/1 * * * *' (force rotate every minute)
+```
+参数有：
+
++ Compress：是否通过gzip压缩日志
+
++ max_size：单个日志文件的大小，比如上图中设置为1K（这个其实太小了，实际文件大小并不会严格分为1K）
+
++ retain：保留的日志文件个数，比如设置为10,那么在日志文件达到10个后会将最早的日志文件删除掉
+
++ dateFormat：日志文件名中的日期格式，默认是YYYY-MM-DD_HH-mm-ss，注意是设置的日志名+这个格式，如设置的日志名为abc.log，那就会生成abc_YYYY-MM-DD_HH-mm-ss.log名字的日志文件
+
++ rotateModule：把pm2本身的日志也进行分割
+
++ workerInterval：设置启动几个工作进程监控日志尺寸，最小为1
+
++ rotateInterval：设置强制分割，默认值是0 0 * * *，意思是每天晚上0点分割
+```
+*    *    *    *    *    *
+┬    ┬    ┬    ┬    ┬    ┬
+│    │    │    │    │    |
+│    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
+│    │    │    │    └───── month (1 - 12)
+│    │    │    └────────── day of month (1 - 31)
+│    │    └─────────────── hour (0 - 23)
+│    └──────────────────── minute (0 - 59)
+└───────────────────────── second (0 - 59, OPTIONAL)
+```
