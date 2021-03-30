@@ -56,7 +56,7 @@ location = / {
  
 
 八个location案例
-
+```
 location = / {  #精确匹配，/后面不能加任何字符串，符合此条件就直接返回数据，不再像下匹配。
     if (-d $request_filename) {
          root /usr/local/nginx/html/;  #当用户访问newweb的时候，则显示此目录的内容，除此之外访问其他的任何目录都不匹配。
@@ -100,7 +100,7 @@ location ~ /images/abc/ {
   # 动作D存在，这一条不生效，如果注销动作D，则会优先最长匹配 动作G 开头的地址，然后向下匹配，到这一条的时候就会匹配并生效。
     [ configuration H ] 
 }
-
+```
  匹配优先级，顺序 no优先级：
 (location =) > (location 完整路径) > (location ^~ 路径) > (location ~,~* 正则顺序) > (location 部分起始路径) > (/)
 
@@ -269,7 +269,7 @@ $ ： 匹配字符串的介绍
  
 
 参考if判断语句
-
+```
 if ($http_user_agent ~ MSIE) { #如果客户端是微软的IE浏览器，就将请求rewrite到msie目录下。
     rewrite ^(.*)$ /msie/$1 break;
 } 
@@ -294,10 +294,10 @@ if (!-f $request_filename){ #如果请求的文件名不存在，则反向代理
 if ($args ~ post=140){ #如果query string中包含"post=140"，永久重定向到example.com
     rewrite ^ http://example.com/ permanent;
 }
- 
+ ```
 
 nginx 配置案例参考
-
+```
 http {
     # 定义image日志格式
     log_format imagelog '[$time_local] ' $image_file ' ' $image_type ' ' $body_bytes_sent ' ' $status;
@@ -329,3 +329,4 @@ http {
                 return 404 "image not found\n";
         }
 }
+```
