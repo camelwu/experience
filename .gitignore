@@ -1,6 +1,6 @@
 .DS_Store
 node_modules/
-# dist/
+remote/
 npm-debug.log
 yarn-error.log
 package-lock.json
@@ -11,3 +11,4 @@ package-lock.json
 *.ntvs*
 *.njsproj
 *.sln
+md/run.md
