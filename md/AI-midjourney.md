@@ -44,9 +44,11 @@
 ### 公式
 | 目的	| Prompt | 解释 |  
 | --- | --- | --- |
-| 类型是什么？	| light watercolor | 类型是水彩 |
+| 画面类型是什么？	| light watercolor | 类型是水彩 |
 | 主体是什么？	| a sleeping cat | 主体是猫 |
+| 环境是怎样的？| in door | 室内，猫窝等，大部分时间可以让 AI 自由发挥 |
 | 构图是怎样的？| null | 构图不重要，让 AI 自由发挥 |
+| 光影是怎样的？| Natural light | 在真实照片、动画电影场景、写真、人物特写等需要使用，普通简约插画不太用得上。 |
 | 背景是什么？	| white background | 背景是白色 |
 | 是什么风格？	| Studio Ghibli | 风格是吉卜力风格 |
 
@@ -112,3 +114,4 @@
 ## 4. 参考
 
 - [Midjourney](https://docs.midjourney.com/)
+- [midlibrary艺术家](https://midlibrary.io/)
