@@ -475,6 +475,11 @@ DPM++2M SDE Exponential
 UniPC  
 Restart
 
+采样步数
+---
+一般models采样20步就可以到达80分，高配再做30步以上。采样不能少于10步
+
+
 ## 5. 可用模型
 ### 真实模型下载
 1. [dreamShaper](https://civitai.com/models/4384?modelVersionId=6500) 对标MJ
@@ -489,6 +494,15 @@ Restart
 3. [MeinaMix](https://civitai.com/models/4201?modelVersionId=501240) 融合了多个模型，无需lora，单通过提示词即可生成优秀的图
 4. [万象熔炉 Anything V5/Ink](https://civitai.com/models/25694?modelVersionId=143906) 提示词理解准确，可配合各种lora生成，适合找灵感
 5. [ToonYou](https://civitai.com/models/4201?modelVersionId=501240) 欧美画风卡通
+Cetus-Mix
+
+完美世界[perfect world]
+Sampler Euler a
+---
+SDXL
+[CounterfeitXL](https://civitai.com/models/118406?modelVersionId=265012) 日漫二次元
+[SDXL_NIJI_Sepcial Edition](https://civitai.com/models/120765?modelVersionId=154625) 牛逼的二次元
+[Anything V5](https://civitai.com/models/120765?modelVersionId=154625)
 
 ### 2.5D模型
 1. [ReV Animated](https://civitai.com/models/25694?modelVersionId=143906) 全能型模型，Lora兼容性比较好，提示词可以很少，但不更新

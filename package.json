@@ -24,5 +24,9 @@
     "grunt": "^1.0.4",
     "grunt-contrib-jshint": "^2.1.0",
     "grunt-contrib-uglify": "^4.0.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "ramda": "^0.29.1"
   }
 }

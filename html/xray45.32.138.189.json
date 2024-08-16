@@ -1,0 +1,147 @@
+{
+  "log": {
+    "access": "/var/log/xray/access.log",
+    "error": "/var/log/xray/error.log",
+    "loglevel": "warning",
+    "dnsLog": false
+  },
+  "inbounds": [
+    {
+      "port": 40086,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "be14069e-7225-45ed-b0e4-f4f537c31070"
+          }
+        ]
+      },
+      "tag": "in-86"
+    },
+    {
+      "port": 40087,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "3ddcf07c-683f-4021-9fa8-89b234cfd499"
+          }
+        ]
+      },
+      "tag": "in-87"
+    },
+    {
+      "port": 40088,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "6900d819-c54d-44d1-a259-3865843fe1df"
+          }
+        ]
+      },
+      "tag": "in-88"
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "direct",
+      "protocol": "freedom"
+    },
+    {
+      "protocol": "socks",
+      "settings": {
+        "servers": [
+          {
+            "address": "156.235.21.149",
+            "port": 2333,
+            "users": [
+              {
+                "user": "shwent520",
+                "pass": "Xingchen01",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "tag": "out01"
+    },
+    {
+      "sendThrough": "154.195.15.59",
+      "protocol": "socks",
+      "settings": {
+        "servers": [
+          {
+            "address": "154.195.15.59",
+            "port": 2333,
+            "users": [
+              {
+                "user": "shwent520",
+                "pass": "Xingchen01",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "tag": "out02"
+    },
+    {
+      "tag": "blocked",
+      "protocol": "blackhole"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "inboundTag": [
+          "in-86",
+          "in-87"
+        ],
+        "outboundTag": "out01",
+        "type": "field"
+      },
+      {
+        "type": "field",
+        "port": "443",
+        "network": "udp",
+        "outboundTag": "blocked"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "domain:gstatic.com"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "blocked",
+        "type": "field"
+      },
+      {
+        "outboundTag": "blocked",
+        "protocol": [
+          "bittorrent"
+        ],
+        "type": "field"
+      },
+      {
+        "type": "field",
+        "inboundTag": "inbound-42110",
+        "outboundTag": "out01"
+      },
+      {
+        "type": "field",
+        "inboundTag": [
+          "in-88"
+        ],
+        "outboundTag": "out02"
+      }
+    ]
+  }
+}
