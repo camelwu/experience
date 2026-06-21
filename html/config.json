@@ -1,0 +1,126 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "port": 1080,
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "settings": {
+        "udp": true
+      },
+      "tag": "socks-inbound",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "45.32.138.189",
+            "port": 40086,
+            "users": [
+              {
+                "id": "be14069e-7225-45ed-b0e4-f4f537c31070"
+              }
+            ]
+          }
+        ]
+      },
+      "tag": "out86"
+    },
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "45.32.138.189",
+            "port": 40087,
+            "users": [
+              {
+                "id": "3ddcf07c-683f-4021-9fa8-89b234cfd499"
+              }
+            ]
+          }
+        ]
+      },
+      "tag": "out87"
+    },
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "45.32.138.189",
+            "port": 40088,
+            "users": [
+              {
+                "id": "6900d819-c54d-44d1-a259-3865843fe1df"
+              }
+            ]
+          }
+        ]
+      },
+      "tag": "out88"
+    },
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPOnDemand",
+    "rules": [
+      {
+        "type": "field",
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "geosite:cn"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "inboundTag": [
+          "socks-inbound"
+        ],
+        "outboundTag": "out88"
+      }
+    ]
+  },
+  "policy": {
+    "levels": {
+      "0": {
+        "uplinkOnly": 0,
+        "downlinkOnly": 0
+      }
+    },
+    "system": {
+      "statsInboundUplink": false,
+      "statsInboundDownlink": false,
+      "statsOutboundUplink": false,
+      "statsOutboundDownlink": false
+    }
+  },
+  "other": {}
+}
